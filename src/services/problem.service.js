@@ -7,16 +7,19 @@ class ProblemService {
     }
 
     async createProblem(problemData) {
-            console.log("Problem Data : ", problemData);
             problemData.description = markdownSanitizer(problemData.description);
             const problem = await this.problemRepository.createProblem(problemData);
-            console.log("Problem created : ", problem);
             return problem;
     }
 
     async getAllProblems() {
         const problems = await this.problemRepository.getAllProblems();
         return problems;
+    }
+
+    async getProblem(problemId) {
+        const problem = await this.problemRepository.getProblem(problemId);
+        return problem;
     }
 }
 
